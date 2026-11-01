@@ -44,22 +44,22 @@ Dify 知识库怎么设置分段分隔符、最大分段长度和重叠？
 ## 架构
 
 ```mermaid
-flowchart LR
-    A[用户中文问题] --> B[Query Rewrite LLM]
-    B --> C[清理 think 标签]
-    C --> D[Dify 知识检索]
-    D --> E[Answer LLM]
-    E --> F[中文回答 + 引用]
+graph LR
+    A["用户中文问题"] --> B["Query Rewrite LLM"]
+    B --> C["清理 think 标签"]
+    C --> D["Dify 知识检索"]
+    D --> E["Answer LLM"]
+    E --> F["中文回答 + 引用"]
 ```
 
 数据管线：
 
 ```mermaid
-flowchart LR
-    A[Dify 官方 MDX] --> B[clean_mdx.py]
-    B --> C[Markdown 文档]
-    C --> D[Parent-child 知识库]
-    D --> E[检索与回答]
+graph LR
+    A["Dify 官方 MDX"] --> B["clean_mdx.py"]
+    B --> C["Markdown 文档"]
+    C --> D["Parent-child 知识库"]
+    D --> E["检索与回答"]
 ```
 
 关键设计：
@@ -108,7 +108,6 @@ MDX → 去 import/JSX 组件 → 保留标题/表格/代码块 → Markdown
 说明：
 
 - q05 回答正确，但引用的是 knowledge-pipeline / manage 文档，不是 gold_doc，所以引用 1 分。
-- 12 条样本用于第一版 baseline，后续计划扩到 40 条。
 
 ## 失败案例与迭代
 

@@ -1,0 +1,50 @@
+# Integrations
+
+Integrations connect your Dify apps to the outside world. They supply the model providers that power your apps, the tools your agents and workflows call, the data sources behind your knowledge bases, and the services that extend what you build.
+
+Install an integration once, and every app in your workspace can use it. Browse and manage them all from **Integrations**.
+
+## Integration Types
+
+- [**Model Provider**](https://docs.dify.ai/en/cloud/use-dify/workspace/model-providers): The models that power your apps, from LLMs to embedding and rerank models.
+
+- [**Tool**](https://docs.dify.ai/en/cloud/use-dify/workspace/tools): Capabilities your agents and workflows can call, including tool plugins, MCP servers, published workflows, and OpenAPI services.
+
+- [**Data Source**](https://docs.dify.ai/en/cloud/use-dify/knowledge/knowledge-pipeline/authorize-data-source): External content for knowledge bases, such as Google Drive or Notion pages.
+
+- [**Trigger**](https://docs.dify.ai/en/cloud/use-dify/nodes/trigger/plugin-trigger): Start a workflow automatically when an external event fires.
+
+- **Agent Strategy**: The reasoning strategy an [Agent node](https://docs.dify.ai/en/cloud/use-dify/nodes/agent) follows to make decisions, select and call tools, and act on the results.
+
+- [**Custom Endpoint**](https://docs.dify.ai/en/cloud/use-dify/workspace/api-extension/api-extension): Connect your own API to add content moderation or external data tools to your apps.
+
+- **Extension**: Integrations that expose custom HTTP endpoints, extending Dify with capabilities the other categories don't cover.
+
+## Install Integrations
+
+Add integrations from three sources:
+
+- [**Marketplace**](https://marketplace.dify.ai/): Integrations from Dify, its partners, and community developers. Each integration is reviewed and tested before publication, then maintained by its publisher.
+
+  > **Info**
+>
+> If installing from the Marketplace opens a different Dify environment instead of your Dify Cloud workspace, clear the saved URL in **Install Preference** to install to Dify Cloud again.
+
+- **GitHub**: Install from any public repository by URL and version.
+- **Local Package File**: Custom `.difypkg` packages for private or internal integrations.
+
+## Permissions and Updates
+
+The workspace owner and admins control who can install and debug integrations from **Permissions**, at the bottom of the **Integrations** page. Each permission can go to everyone, admins only, or no one:
+
+- **Who can install and manage?** covers installing and upgrading integrations. Only the workspace owner and admins can remove them.
+
+- **Who can debug?** covers the debugging key, which lets a member attach an integration they're developing to this workspace for [remote debugging](https://docs.dify.ai/en/develop-plugin/features-and-specs/plugin-types/remote-debug-a-plugin).
+
+Integrations can also be set to update automatically. Each category (tools, models, data sources, and so on) has its own update strategy (off, patch versions only, or always the latest), applied to every integration in the category or a chosen subset.
+
+## Build Your Own
+
+> **Info**
+>
+> Need an integration that doesn't exist yet? Build it with Dify's plugin SDK, then keep it private or publish it to the Marketplace. See [Develop a Plugin](https://docs.dify.ai/en/develop-plugin/getting-started/getting-started-dify-plugin).

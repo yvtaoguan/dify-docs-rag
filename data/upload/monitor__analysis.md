@@ -1,0 +1,19 @@
+# Dashboard
+
+The dashboard tracks four metrics over time to show how your application performs:
+
+**Total Messages**: Conversation volume
+**Active Users**: Users with meaningful interactions (more than one exchange)
+**Average User Interactions**: Engagement depth per session
+**Token Usage**: Resource consumption and costs
+
+Use the time selector to view trends over different periods. Click **"Tracing app performance"** to connect external observability platforms like [Langfuse](https://docs.dify.ai/en/cloud/use-dify/monitor/integrations/integrate-langfuse) or [LangSmith](https://docs.dify.ai/en/cloud/use-dify/monitor/integrations/integrate-langsmith) for deeper analytics.
+
+For an [Agent](https://docs.dify.ai/en/cloud/use-dify/build/new-agent/overview), open the same tracing settings from the Agent's **Monitoring** section. They apply to the Agent's own runs, such as its chats, web app, and API calls. When the Agent runs inside a Workflow, that app's tracing settings apply instead.
+
+In the tracing settings, **Agent data capture** sets what the traces include for Agent apps and for workflows with a [new Agent node](https://docs.dify.ai/en/cloud/use-dify/nodes/agent#new-agent):
+
+- **Capture Agent internals**: the Agent's model and tool calls. Turn it off to keep these steps out of your tracing provider; the trace then shows the Agent as a single step.
+- **Capture content**: the inputs and outputs of every step in the trace, not only the Agent's. Turning it on sends prompts, user messages, and replies to your tracing provider.
+
+In other workflows, including those with only a classic Agent node, these switches have no effect.

@@ -1,0 +1,13 @@
+﻿id,question,gold_doc,Top1文档,回答得分,引用得分,拒答正确,备注
+q01,怎么创建一个可以直接使用的知识库？,knowledge/create-knowledge/introduction,knowledge_redgeme.md,2,2,,
+q02,Dify 知识库分段设置有哪些参数？,knowledge/create-knowledge/chunking-and-cleaning-text,knowledge__manage-knowledge__introduction.md,2,2,,
+q03,Chunk overlap 的作用是什么？,knowledge/create-knowledge/chunking-and-cleaning-text,knowledge_create-knowledge_chunking-and-cleaning-text,2,2,,
+q04,General 和 Parent-child 模式有什么区别？,knowledge/create-knowledge/chunking-and-cleaning-text,knowledge_overiew.md,2,2,,
+q05,Parent-child 模式支持经济索引吗？,knowledge/create-knowledge/chunking-and-cleaning-text,knowledge_knowledge-pipeline_knowledge-pipeline-orchestration,2,1,,
+q06,知识库创建后还能改分段模式吗？,knowledge/create-knowledge/chunking-and-cleaning-text,knowledge_manage-knowledge_maintain-knowledge-documents,2,2,,
+q07,怎么从 Notion 同步知识库？,knowledge/create-knowledge/import-text-data/sync-from-notion,knowledge_overview.md,2,2,,
+q08,Dify 知识库支持哪些索引方式？,knowledge/create-knowledge/setting-indexing-methods,knowledge_create-knowledge_setting-indexing-methods,2,2,,
+q09,Dify 知识库的 SLA 是多少？,,knowledge_connect-external-knowledge-base,,,1,
+q10,怎么分段？,knowledge/create-knowledge/chunking-and-cleaning-text,knowledge_manage-knowledge_introduction,2,2,,
+q11,What is chunk overlap?,knowledge/create-knowledge/chunking-and-cleaning-text,knowledge_create-knowledge_chunking-and-cleaning-text,2,2,,
+q12,Dify 知识库支持 GPU 加速吗？,,knowledge_knowledge-storage-limit,,,1,

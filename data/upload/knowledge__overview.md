@@ -1,0 +1,54 @@
+# Knowledge
+
+A knowledge base gives your apps your own content to answer from. When a question comes in, the most relevant passages are found and handed to the model along with it, so the answer draws on your content rather than only on what the model learned in training.
+
+Use one for anything your apps should know that a model doesn't, such as a help center, internal policies, a product catalog, or research material. Create one per domain or team, and connect it to the apps that need it.
+
+## Two Kinds of Knowledge Base {#choose}
+
+Which one fits depends mostly on the apps you're building and how much of the processing you want to control.
+
+### Agent Knowledge Base
+
+An [agent knowledge base](https://docs.dify.ai/en/cloud/use-dify/knowledge-base/overview) keeps setup simple: add your content, and it organizes and indexes everything on its own.
+
+Choose it when you want:
+
+- **Deeper searches for harder questions**: pick Fast, Deep, or Research as its [retrieval depth](https://docs.dify.ai/en/cloud/use-dify/knowledge-base/retrieval-settings#retrieval-depth).
+- **Content that stays current**: connected websites, online documents, and online drives refresh on the schedule you set.
+- **Built-in quality checks**: re-test key questions after every change, and track what retrieval misses.
+- **Access for coding agents**: they read its content through the Dify CLI.
+
+Workflow and Chatflow apps and the new Agent can use it. For a new project, start here.
+
+### Classic Knowledge Base
+
+A [classic knowledge base](https://docs.dify.ai/en/cloud/use-dify/knowledge/readme) is one where you decide how your content is chunked, indexed, and searched.
+
+Choose it when you need:
+
+- **Chatbot, Text Generator, or legacy Agent apps** to answer from it. Workflow and Chatflow apps can use either kind.
+- **More control over processing**, up to building the whole processing chain as a [Knowledge Pipeline](https://docs.dify.ai/en/cloud/use-dify/knowledge/knowledge-pipeline/readme).
+- **Content that stays in your own system**, connected as an [external knowledge base](https://docs.dify.ai/en/cloud/use-dify/knowledge/connect-external-knowledge-base).
+- **Files larger than 15 MB**: up to 50 MB on Professional and Team.
+
+> **Info**
+>
+> Most classic knowledge bases can be [upgraded](https://docs.dify.ai/en/cloud/use-dify/knowledge-base/upgrade-from-classic) to agent ones later, but agent knowledge bases can't be turned into classic ones.
+
+## Compare the Two Kinds {#compare}
+
+| | Agent Knowledge Base | Classic Knowledge Base |
+|:--|:--|:--|
+| Apps | Workflow and Chatflow apps, the new Agent | Chatbot, Text Generator, legacy Agent, Workflow, and Chatflow apps |
+| Content sources | File uploads, website crawls, online documents, online drives | File uploads, website crawls, Notion; other data sources through a Knowledge Pipeline; an external knowledge base |
+| File size | Up to 15 MB per file on every plan | Up to 15 MB per file on Sandbox; up to 50 MB on Professional and Team |
+| What you configure | Models and a retrieval depth, plus Top K and an optional score threshold | Models, chunk mode and length, index method, and search method, plus Top K and an optional score threshold; or the whole processing chain as a Knowledge Pipeline |
+| Search | By meaning and keywords; deeper retrieval depths follow related subjects or break a question into parts | By meaning, by keywords, or both |
+| Indexing models | The reasoning model and the embedding model | The embedding model (High Quality index), or no model (Economical index) |
+| Keeping content current | Each source syncs on its own schedule | Notion and website documents sync by hand |
+| Quality testing | Retrieval tests, golden questions, evaluations, and bad cases | Retrieval tests |
+| Monitoring | The Overview page, with what needs attention and how questions were answered | None |
+| Access outside Dify | Service API and the [Dify CLI](https://docs.dify.ai/en/cloud/use-dify/knowledge-base/use-knowledge-in-apps#from-your-coding-agent) | Service API |
+
+Both kinds share the same permission choices, document quota, request rate limit, and knowledge base API keys. Both also make images searchable with a vision-capable embedding model.

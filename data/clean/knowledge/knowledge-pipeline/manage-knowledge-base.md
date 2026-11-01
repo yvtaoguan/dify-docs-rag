@@ -1,0 +1,10 @@
+# Step 5: Manage and Use Knowledge Base
+
+After creating your knowledge base, continuous management and optimization will provide accurate contextual information for your applications. These are the  options for follow-up maintenance.
+
+### Knowledge Pipeline
+View and modify your orchestrated pipeline nodes and configurations.
+
+> **Tip**
+>
+> Find more information in [Manage Knowledge](https://docs.dify.ai/en/cloud/use-dify/knowledge/manage-knowledge/maintain-knowledge-documents).

@@ -1,0 +1,236 @@
+# Build an Agent
+
+> **Info**
+>
+> The new Agent is in beta.
+
+## Create an Agent
+
+From **Agents**, click **Create** > **Create from Blank** and give the agent a name; optionally add a role such as *Research Assistant* and a description. Then you shape everything else in **Configure**.
+
+For a ready-made starting point, choose **Create from Template** instead. You can try a template before using it: open its **Details** > **Try it**. Trials use none of your AI credits or API keys.
+
+To create an agent from an app package (`.ifpkg`) or a DSL file (`.yml` or `.yaml`), click **Create** > **Import App**. DSL files don't include skills and files, so add them manually after importing.
+
+> **Info**
+>
+> Creating and managing agents requires the Editor role or above.
+
+## Configure Its Capabilities
+
+Set up each capability by hand, or describe what you want and build it by chatting in [Build mode](#build-by-chatting).
+
+Everything you set up in **Configure** is saved as the agent's capabilities and used in every task later. Separately, the agent works inside its own *sandbox* with 20 GB of storage, where it runs commands and handles files as it goes.
+
+The agent's capabilities can only be changed here: even if an end user asks a published agent to change its own prompt, skills, or tools, it won't.
+
+### Model
+
+Pick the chat model the agent runs on. Favor models that are strong at reasoning and natively support tool calling, since the agent has to judge when to act, which tool fits, and how to read the result.
+
+> **Note**
+>
+> Agent performance rises and falls with the model, so pick a recent one.
+>
+> Older models often can't make full use of the sandbox: a common symptom is an agent that never runs commands or installs tools, even when the task needs it.
+
+### Prompt {#prompt}
+
+In the prompt, set the agent's role and how it should approach its work. Be specific about how it should reason, when to lean on its tools, and what to avoid.
+
+A few things worth covering:
+
+- **Persona and goal**: who the agent acts as and what it's trying to achieve.
+- **Approach**: the steps or order you expect for a typical task.
+- **Tool and file use**: when to reach for each, named explicitly.
+- **Output**: the format, length, or tone you want back.
+
+You can point the agent at a specific skill, file, or tool, or leave the choice to the agent:
+
+- **Reference it in the prompt** with `/` to send the agent straight to it, right where you want it used. Best when a step depends on a specific one.
+- **Just add it to its section** and let the agent decide on its own when to use it. Best when you'd rather trust the agent's judgment than script every move.
+
+### Skills {#skills}
+
+A skill is a procedure the agent follows for one specific task. Unlike the prompt, which sets the agent's overall role, a skill covers just that task.
+
+For example, a support agent's prompt might set its role as a customer helper that handles any issue, while its `refund-requests` skill covers only refunds: look up the order, refund only within 30 days, and end with a help-center link.
+
+Click **Add** to upload a skill package: a `.zip` or `.skill` file with a `SKILL.md` inside, up to 50 MB. See [Agent Skills](https://agentskills.io/home) for the package format.
+
+You can also have the agent create skills for you in [Build mode](#build-by-chatting).
+
+> **Tip**
+>
+> To make a Dify tool or file part of the agent's own capabilities, add it to the agent directly rather than inside a skill package.
+
+### Files {#files}
+
+Files are reference documents the agent can read while it works, like specs, templates, or guidelines. Unlike a skill, a file is just material to read, not a procedure to run.
+
+Size limits depend on file type:
+
+| File type | Limit |
+|:----------|:------|
+| Documents | 15 MB |
+| Images | 10 MB |
+| Video | 100 MB |
+| Audio | 50 MB |
+
+You can also have the agent create files and save them here in [Build mode](#build-by-chatting). Files the agent creates and saves are capped at 50 MB each.
+
+### Tools {#tools}
+
+Give the agent [Dify tools](https://docs.dify.ai/en/cloud/use-dify/workspace/tools) so it can act beyond the chat: plugins, custom APIs, workflows, and MCP servers from your workspace. Some tools need authentication before use. A workflow tool that contains a Human Input node can't be used by an agent.
+
+> **Tip**
+>
+> Beyond the Dify tools you add here, the agent can also install and run command-line tools on its own inside the sandbox when it needs one. Those tools don't appear in the Tools list.
+>
+> Tools the agent installs in [Build mode](#build-by-chatting) can stay available after publishing, while anything installed during a published run is temporary.
+
+### Agent Knowledge Base {#agent-knowledge-base}
+
+> **Info**
+>
+> Classic knowledge bases can't be added here. To use one, [upgrade it to an agent knowledge base](https://docs.dify.ai/en/cloud/use-dify/knowledge-base/upgrade-from-classic).
+
+Give the agent an [agent knowledge base](https://docs.dify.ai/en/cloud/use-dify/knowledge-base/overview) so it can answer from your documents.
+
+The agent judges from the knowledge base's name and description when it's relevant, then reads its documents and searches them by meaning and keywords. With a vision-capable model, it can also look at images the search turns up.
+
+To guide the agent more precisely, you can set an alternative name and description for each knowledge base under **Advanced Settings**; they apply to this agent only:
+
+- Change the name when the knowledge base's own name wouldn't tell the agent what it holds, and keep each name distinct within the agent.
+
+- Write the description as guidance on when to use the knowledge base, not a summary of its contents: which questions or tasks it should answer from here, and which it shouldn't. For example:
+
+    ```text wrap
+    Use for questions about employee benefits, leave, and expense policy. Don't use for IT or security questions.
+    ```
+
+The searches always run at the Fast retrieval depth, regardless of the knowledge base's own settings.
+
+Keep the knowledge base's **API access** on. When it's off, the published agent can no longer search it.
+
+### Environment Variables {#environment-variables}
+
+Under **Advanced Settings**, you can add **environment variables**: key-value pairs the agent can read in its sandbox while it works.
+
+Say your agent's skills all work with the same order system: one checks stock, one files orders, one pulls reports. Store the system's address here as `ORDER_API_URL`, and every script reads it by name. To switch from the test system to the production one, update this one value, and all of them follow.
+
+Import a `.env` file to add several at once. You can also have the agent set them up in [Build mode](#build-by-chatting).
+
+## Build by Chatting {#build-by-chatting}
+
+Instead of setting everything up by hand, you can build the agent by describing what it should do, and as you chat it sets up its *prompt*, *skills*, *files*, and *environment variables* itself.
+
+For example, your first message might be:
+
+```text wrap
+Build an agent that turns raw meeting notes into structured minutes: attendees, decisions, and action items.
+```
+
+You're talking to the live agent: test it as you build, watch how it behaves, and refine it in the same build chat.
+
+As the agent works, it edits the configuration in the panel directly. Click **Apply** to keep the changes, or **Discard** to drop. Either one exits Build mode and clears the conversation.
+
+> **Note**
+>
+> **Discard** drops everything from this build chat: any changes to the configuration and persistent files in the [**File system**](#file-system).
+
+While you're in Build mode, the configuration panel is read-only—just tell the agent what you want to change. It can't change the model or tools, though: set those yourself once you're out of Build mode.
+
+### File System
+
+In Build mode, the agent handles real files in its sandbox: artifacts it generates, programs it installs on its own, and everything else it's working with. During a build chat, click **File system** in the top-right corner to browse them.
+
+Since a build chat is where you shape the agent itself, whatever it adds (a template it drafted, a tool it installed) is **Persistent** by default, kept for every future conversation and workflow run. In effect, these files are part of the agent's setup, like its prompt and skills.
+
+For one-off work, like a test file or a converter it only needs once, tell the agent in the chat, e.g. "keep this file temporary": it goes under **Temporary** and is cleared when this build chat ends.
+
+In published runs, whatever the agent adds is always temporary, so nothing that happens in a run changes the agent itself.
+
+### The Build Note {#the-build-note}
+
+In build chats, the agent records what it set up in a *build note*, a `build_note.md` that appears in **Files** the first time you **Apply**.
+
+The note is saved with the agent's setup, and it reads the note back at the start of every new conversation, combining it with your **Prompt** to form its instructions.
+
+After you apply, open the build note and read what the agent captured:
+
+  - If it covers what you want, you're set.
+
+  - To change what it says, have the agent revise it in Build mode.
+
+    > **Info**
+>
+> The agent maintains only the auto-generated build note: a downloaded copy you re-upload is just an ordinary file, and the next build chat creates a fresh note alongside it.
+
+  - If anything's missing, add it to the **Prompt**.
+
+  - To start over with a clean record, delete the note in **Files**.
+
+Across build chats, the note also serves as the agent's *memory*. If you shaped the meeting-minutes agent in one chat, a later chat to add action-item owners starts from the format and decisions you already settled, not from scratch.
+
+## Preview
+
+Switch the right panel from **Build** to **Preview** to try the agent exactly as end users will experience it once published: clean replies and your Chat Features active.
+
+Chatting in Preview mode never changes the agent's configuration, so use it as the final check before you publish.
+
+## Publish {#publish}
+
+Your edits autosave as a draft. When the agent is ready, publish it to make that version live. Open the version history anytime to revisit an earlier version or restore it (restoring is available on Professional and Team).
+
+> **Info**
+>
+> Restoring also brings the persistent files in the agent's sandbox back to that version.
+
+> **Tip**
+>
+> To polish the chat experience, you can add extras like a welcome message, suggested questions, and voice in **Chat Features**. See [App Toolkit](https://docs.dify.ai/en/cloud/use-dify/build/additional-features) for details.
+
+From the **Access Point** tab, host it as a web app at a shareable link, embed it in your site, or call it from your code through the [service API](https://docs.dify.ai/en/api-reference/guides/agent).
+
+You can also invite the agent into a workflow's [Agent node](https://docs.dify.ai/en/cloud/use-dify/nodes/agent#new-agent) to handle a step.
+
+To share the agent across workspaces, click **Export Agent** from its menu. This exports your current draft, unpublished changes included. To share a published version instead, export it from that version's menu (available on Professional and Team).
+
+### Run Limits
+
+- **Time**
+
+    A single agent run is stopped after 1 hour, whichever access point it starts from (web app, service API, or a workflow), and the unfinished reply is discarded.
+
+    If a run gets cut off, try again or break the task into smaller steps.
+
+- **Model requests**
+
+    Every call the agent makes to its model counts toward a cap of 500 per run, so heavy reasoning and frequent tool use spend it faster.
+
+    Try breaking the task into smaller steps to keep each run within the cap.
+
+- **Reply files**
+
+    Each file the agent sends back in a reply can be up to 50 MB, and larger files aren't delivered.
+
+## Troubleshooting
+
+### The agent errors or never calls tools with an OpenAI-compatible model
+
+Models served through OpenAI-compatible endpoints (vLLM and similar) often lack full native tool-calling support, which the agent depends on in build chats as well as published runs.
+
+Pick a model that supports tool calling natively. If a compatible model still errors, check **Token parameter name** in the model's settings on the provider: some newer models require `max_completion_tokens`, and auto-detection can guess wrong.
+
+Some OpenAI models reject tool calls when reasoning is enabled over the Chat Completions protocol. For those, set the provider credential's **API Protocol** to Responses API.
+
+### The agent errors on or ignores uploaded images
+
+Image upload can be turned on in **Chat Features** regardless of whether the agent's model supports vision. With a non-vision model, the agent may error on an image or reply as if none was sent.
+
+Switch to a model that supports vision: look for the Vision tag when picking the model.
+
+### The agent can't fetch files or pages from your internal network
+
+The agent's sandbox runs in the cloud, so hosts on your private network aren't reachable. Public URLs work; for internal material, add it to the agent's [Files](#files) instead.

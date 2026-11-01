@@ -1,0 +1,153 @@
+# Publish Apps to Marketplace
+
+Publish your apps as templates to Dify Marketplace, where other Dify users can discover and use them.
+
+## Submit a Template
+
+To publish a template, submit it through the [Creator Center](https://creators.dify.ai). Choose your personal account if only you need to review its usage and feedback, or an organization if your team needs access too.
+
+After you submit, the template enters **Pending** status while we review it. Once approved, it's published to Marketplace.
+
+While a template is **Pending**, you can withdraw it at any time. Withdrawing returns it to **Draft**, where you can edit any part of the template before resubmitting.
+
+> **Note**
+>
+> Before submission:
+> - Make sure all plugins used in the app are **installed directly from Marketplace**.
+> - Run the app at least once to confirm it works as expected.
+
+### Submission Methods
+
+### From Dify Studio
+
+In your app, click **Publish** > **Publish Update**, then click **Publish to Marketplace**.
+
+This takes you to the Creator Center with your app automatically uploaded, without any secret-type environment variable values. Fill in the template details and submit for review.
+
+### In the Creator Center
+
+1. [Export the app](https://docs.dify.ai/en/cloud/use-dify/workspace/export-import-apps#export-an-app) with **Export secret values** off, since anyone can download the app package you upload.
+
+2. Upload the `.ifpkg` app package (up to 10 MB) in the Creator Center, fill in the template details, and submit for review.
+
+    If the app package is larger, simplify the app as needed, then export again:
+
+    - Remove unused nodes and connections.
+    - Shorten long prompts, code, template text, HTTP request bodies, or variable values.
+    - If the app is an Agent or uses Agent nodes, remove skills and files they don't need.
+
+### Template Writing Guidelines
+
+#### Template Name & Icon
+
+From the name alone, users should know where it runs and what it does.
+
+- Use a short, descriptive name.
+- Recommended pattern: [Channel / target] + [core task], for example:
+    - WeChat Customer Support Bot
+    - CSV Data Analyzer with Natural Language
+    - Internal Docs Q&A Assistant
+    - GitHub Issue Triage Agent
+- Include keywords users might search for: channel names (Slack, WeChat, Email, Notion) and task names (Summarizer, Assistant, Generator, Bot).
+- Use an icon that clearly reflects the template's theme and purpose, rather than the default avatar.
+
+#### Categories
+
+Help users discover your template when browsing or filtering by category.
+
+- Select only **1–3** categories that best describe your template.
+- Do not check every category just for exposure.
+
+#### Language
+
+Help users discover your template via the language filter.
+
+- Select the language of your template, and use it for the name, overview, and setup steps.
+- If you want to publish your template in multiple languages, submit a separate template for each one.
+
+#### Overview
+
+In 2 to 4 sentences, explain what it does and who it is for.
+
+> **Info**
+>
+> You don't need to list prerequisites, inputs, or outputs here.
+
+**Recommended structure**
+
+1. Sentence 1: **What it does**
+
+    A one-sentence summary of the main function.
+2. Sentence 2–3: **Who and when**
+
+    Typical user roles or scenarios (support team, marketers, founders, individual knowledge workers, etc.).
+
+### Example: Description for Stock Investment Analysis Copilot
+
+This template creates a stock investment analysis copilot that uses Yahoo Finance tools to fetch news, analytics, and ticker data for any listed company.
+
+It helps investors and analysts quickly generate structured research summaries, compare companies, and prepare reports without manually switching between multiple finance websites.
+
+#### Setup Steps
+
+Write Setup steps as a numbered Markdown list (1., 2., 3.), with one concise action per step.
+
+A new user should be able to get the template running in a few minutes just by following these steps.
+
+**Writing principles**
+
+1. Follow the real setup order, usually:
+    1. Use/import the template
+    2. Connect accounts / add API keys
+    3. Connect data sources (docs, databases, sheets, etc.)
+    4. Optional customization (assistant name, tone, filters)
+    5. Activate the workflow and run a test
+
+2. Each step should answer:
+    - Where to click in the UI
+    - What to configure or fill in
+
+3. Aim for 3–8 steps. Too few feels incomplete; too many feels overwhelming.
+
+### Example: Setup Steps for Stock Investment Analysis Copilot (Yahoo Finance tools)
+
+1. Click **Use template** to copy the "Investment Analysis Copilot (Yahoo Finance)" agent into your workspace.
+
+2. Go to **Integrations** > **Model Provider** and add your LLM API key. For example, OpenAI, Anthropic, or another supported provider.
+
+3. Open the agent's **Orchestrate** page and make sure the Yahoo Finance tools are enabled in the **Tools** section:
+  - `yahoo Analytics`
+  - `yahoo News`
+  - `yahoo Ticker`
+
+4. (Optional) Customize the analysis style:
+   - In the **INSTRUCTIONS** area, adjust the system prompt to match your target users. For example, tone, report length, preferred language, or risk preference.
+   - Update the suggested questions in the **Debug & Preview** panel if you want different example queries.
+
+5. Click **Publish** to make the agent available, then use the preview panel to test it:
+   - Enter a company name or ticker (e.g., `Nvidia`, `AAPL`, `TSLA`).
+   - Confirm that the copilot calls the Yahoo Finance tools and returns a structured investment analysis report.
+
+#### Quick Checklist Before You Submit
+
+- The name is a short phrase that clearly shows where it runs and what it does.
+- The overview uses 2 to 4 sentences to explain the value and typical use cases.
+- Only 1–3 relevant categories are selected.
+- Setup steps are a clear numbered list.
+- The selected language is used consistently throughout the template.
+
+## View Template Usage and Feedback
+
+Once published, view your template's total uses, overall rating, rating count, and total likes on [**Template**](https://creators.dify.ai/dashboard/templates). Review individual ratings, likes, and feedback messages in [**Inbox**](https://creators.dify.ai/dashboard/inbox).
+
+## Update a Published Template
+
+How you update a published template depends on what you want to change.
+
+- **To change anything inside the app** (its prompts, tools, model settings, and so on)
+
+    Submit the updated app as a new template. This creates a separate listing rather than replacing the original, so you can manually unpublish the old version once the new one is published.
+
+- **To change only the listing** (such as the Overview or Setup steps)
+
+    Unpublish the template to move it to **Delisted**. Make your edits, then resubmit it for review.

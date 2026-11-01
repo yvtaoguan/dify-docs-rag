@@ -1,0 +1,13 @@
+﻿id,category,question,gold_doc,must_include,should_refuse
+q01,fact,怎么创建一个可以直接使用的知识库？,knowledge/create-knowledge/introduction,ready-to-use;upload,0
+q02,config,Dify 知识库分段设置有哪些参数？,knowledge/create-knowledge/chunking-and-cleaning-text,Delimiter;Maximum chunk length;Chunk overlap,0
+q03,concept,Chunk overlap 的作用是什么？,knowledge/create-knowledge/chunking-and-cleaning-text,overlap;semantic,0
+q04,compare,General 和 Parent-child 模式有什么区别？,knowledge/create-knowledge/chunking-and-cleaning-text,General;Parent-child;child;parent,0
+q05,constraint,Parent-child 模式支持经济索引吗？,knowledge/create-knowledge/chunking-and-cleaning-text,High Quality;not Economical,0
+q06,constraint,知识库创建后还能改分段模式吗？,knowledge/create-knowledge/chunking-and-cleaning-text,cannot be changed;settings can be adjusted,0
+q07,sync,怎么从 Notion 同步知识库？,knowledge/create-knowledge/import-text-data/sync-from-notion,Sync,0
+q08,index,Dify 知识库支持哪些索引方式？,knowledge/create-knowledge/setting-indexing-methods,High Quality;Economical,0
+q09,unanswerable,Dify 知识库的 SLA 是多少？,,,1
+q10,ambiguous,怎么分段？,knowledge/create-knowledge/chunking-and-cleaning-text,Delimiter;Maximum chunk length;Chunk overlap,0
+q11,english,What is chunk overlap?,knowledge/create-knowledge/chunking-and-cleaning-text,overlap;semantic,0
+q12,unanswerable,Dify 知识库支持 GPU 加速吗？,,,1
